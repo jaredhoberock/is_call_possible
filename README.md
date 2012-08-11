@@ -5,7 +5,8 @@ C++03 functionality for checking for the existence of a member function with a g
 
 Inspired by Roman Perepelitsa's presentation from [`comp.lang.c++.moderated`](https://groups.google.com/d/msg/comp.lang.c++.moderated/T3x6lvmvvkQ/mfY5VTDJ--UJ) which was based on the [original implementation here](http://www.rsdn.ru/forum/cpp/2759773.1.aspx).
 
-Demo:
+Demo
+----
 
 ```c++
 #include "is_call_possible.hpp"
