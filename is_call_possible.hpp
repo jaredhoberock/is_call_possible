@@ -48,7 +48,7 @@ namespace is_call_possible_detail
 } 
 
 #define DEFINE_IS_CALL_POSSIBLE(trait_name, member_function_name)                                                       \
-namespace trait_name_#detail                                                                                            \
+namespace trait_name##_detail                                                                                           \
 {                                                                                                                       \
 DEFINE_HAS_MEMBER_FUNCTION(has_member_##member_function_name, member_function_name)                                     \
 }                                                                                                                       \
