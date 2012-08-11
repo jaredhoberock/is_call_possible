@@ -1,13 +1,3 @@
-is_call_possible
-================
-
-C++03 functionality for checking for the existence of a member function with a given name and signature.
-
-Inspired by Roman Perepelitsa's presentation from comp.lang.c++.moderated which was based on the original implementation here: http://www.rsdn.ru/forum/cpp/2759773.1.aspx
-
-Demo:
-
-```
 #include "is_call_possible.hpp"
 #include <cassert>
 #include <string>
@@ -62,4 +52,4 @@ int main()
   
   return 0;
 } 
-```
+
