@@ -50,7 +50,7 @@ namespace is_call_possible_detail
 #define DEFINE_IS_CALL_POSSIBLE(trait_name, member_function_name)                                                       \
 namespace trait_name##_detail                                                                                           \
 {                                                                                                                       \
-DEFINE_HAS_MEMBER_FUNCTION(has_member_##member_function_name, member_function_name)                                     \
+DEFINE_HAS_MEMBER_FUNCTION(has_member, member_function_name)                                                            \
 }                                                                                                                       \
                                                                                                                         \
 template <typename T, typename Signature>                                                                               \
@@ -61,7 +61,7 @@ struct trait_name                                                               
    class no { yes m[2]; };                                                                                              \
    struct derived : public T                                                                                            \
    {                                                                                                                    \
-     using T::member_function_name();                                                                                   \
+     using T::member_function_name;                                                                                     \
      no member_function_name(...) const;                                                                                \
    };                                                                                                                   \
                                                                                                                         \
@@ -152,6 +152,6 @@ struct trait_name                                                               
    };                                                                                                                   \
                                                                                                                         \
   public:                                                                                                               \
-    static const bool value = impl<trait_name##_detail::has_member_##member_function_name<T>::value, Signature>::value; \
+    static const bool value = impl<trait_name##_detail::has_member<T>::value, Signature>::value; \
 }; 
 
