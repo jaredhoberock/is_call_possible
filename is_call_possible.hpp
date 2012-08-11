@@ -22,8 +22,6 @@ public:                                                                       \
    static const bool value = sizeof(yes) == sizeof(deduce<T>(0));             \
 }; 
 
-DEFINE_HAS_MEMBER_FUNCTION(has_call_operator, operator())
-
 namespace is_call_possible_detail
 { 
    template <typename T> class void_exp_result {}; 
