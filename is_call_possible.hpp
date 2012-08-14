@@ -2,6 +2,22 @@
 
 // inspired by Roman Perepelitsa's presentation from comp.lang.c++.moderated
 // based on the implementation here: http://www.rsdn.ru/forum/cpp/2759773.1.aspx
+namespace is_call_possible_detail
+{ 
+
+template<typename T>
+struct add_reference
+{
+  typedef T& type;
+};
+
+template<typename T>
+struct add_reference<T&>
+{
+  typedef T& type;
+};
+
+} // end is_call_possible_detail
 
 #define DEFINE_HAS_MEMBER_FUNCTION(trait_name, member_function_name)                                         \
 template<typename T, typename Signature> class trait_name;                                                   \
@@ -164,8 +180,8 @@ struct trait_name                                                               
    template <typename Result, typename Arg>                                                                             \
    struct impl<true, Result(Arg)>                                                                                       \
    {                                                                                                                    \
-     static derived_type &test_me;                                                                                      \
-     static Arg &arg;                                                                                                   \
+     static typename is_call_possible_detail::add_reference<derived_type>::type test_me;                                \
+     static typename is_call_possible_detail::add_reference<Arg>::type          arg;                                    \
                                                                                                                         \
      static const bool value =                                                                                          \
        sizeof(                                                                                                          \
@@ -178,9 +194,9 @@ struct trait_name                                                               
    template <typename Result, typename Arg1, typename Arg2>                                                             \
    struct impl<true, Result(Arg1,Arg2)>                                                                                 \
    {                                                                                                                    \
-     static derived_type &test_me;                                                                                      \
-     static Arg1 &arg1;                                                                                                 \
-     static Arg2 &arg2;                                                                                                 \
+     static typename is_call_possible_detail::add_reference<derived_type>::type test_me;                                \
+     static typename is_call_possible_detail::add_reference<Arg1>::type         arg1;                                   \
+     static typename is_call_possible_detail::add_reference<Arg2>::type         arg2;                                   \
                                                                                                                         \
      static const bool value =                                                                                          \
        sizeof(                                                                                                          \
@@ -193,10 +209,10 @@ struct trait_name                                                               
    template <typename Result, typename Arg1, typename Arg2, typename Arg3>                                              \
    struct impl<true, Result(Arg1,Arg2,Arg3)>                                                                            \
    {                                                                                                                    \
-     static derived_type &test_me;                                                                                      \
-     static Arg1 &arg1;                                                                                                 \
-     static Arg2 &arg2;                                                                                                 \
-     static Arg3 &arg3;                                                                                                 \
+     static typename is_call_possible_detail::add_reference<derived_type>::type test_me;                                \
+     static typename is_call_possible_detail::add_reference<Arg1>::type         arg1;                                   \
+     static typename is_call_possible_detail::add_reference<Arg2>::type         arg2;                                   \
+     static typename is_call_possible_detail::add_reference<Arg3>::type         arg3;                                   \
                                                                                                                         \
      static const bool value =                                                                                          \
        sizeof(                                                                                                          \
@@ -209,11 +225,11 @@ struct trait_name                                                               
    template <typename Result, typename Arg1, typename Arg2, typename Arg3, typename Arg4>                               \
    struct impl<true, Result(Arg1,Arg2,Arg3,Arg4)>                                                                       \
    {                                                                                                                    \
-     static derived_type &test_me;                                                                                      \
-     static Arg1 &arg1;                                                                                                 \
-     static Arg2 &arg2;                                                                                                 \
-     static Arg3 &arg3;                                                                                                 \
-     static Arg4 &arg4;                                                                                                 \
+     static typename is_call_possible_detail::add_reference<derived_type>::type test_me;                                \
+     static typename is_call_possible_detail::add_reference<Arg1>::type         arg1;                                   \
+     static typename is_call_possible_detail::add_reference<Arg2>::type         arg2;                                   \
+     static typename is_call_possible_detail::add_reference<Arg3>::type         arg3;                                   \
+     static typename is_call_possible_detail::add_reference<Arg4>::type         arg4;                                   \
                                                                                                                         \
      static const bool value =                                                                                          \
        sizeof(                                                                                                          \
